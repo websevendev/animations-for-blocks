@@ -1,0 +1,142 @@
+/**
+ * Animate on Scroll element in the editor.
+ */
+[data-aos] {
+  /**
+   * Hide if not initialized yet.
+   */
+  &:not(.aos-init) {
+    opacity: 0 !important;
+    transition: none !important;
+  }
+
+  /**
+   * Disable pointer events during animation to prevent re-render of the BlockListBlock.
+   */
+  &, & * {
+    pointer-events: none !important;
+  }
+
+  /**
+   * Hide block toolbar during animation.
+   */
+  .editor-block-toolbar {
+    display: none !important;
+  }
+
+  /**
+   * Hide block outline during animation.
+   */
+  .editor-block-list__block-edit:before {
+    outline-color: rgba(0, 0, 0, 0) !important;
+  }
+}
+
+/**
+ * Hide horizontal scrollbar since animation elements can go offscreen.
+ */
+.edit-post-layout__content {
+  overflow-x: hidden;
+}
+
+/**
+ * Animations for Blocks Inspector Controls panel.
+ */
+.wsd-anfb {
+  /**
+   * Range control number input should fit 4 numbers.
+   */
+  .components-range-control__number {
+    min-width: 60px;
+  }
+
+  /**
+   * Advanced settings wrapper.
+   */
+  .anfb-advanced-settings {
+    margin-top: 16px;
+  }
+
+  /**
+   * Button groups.
+   */
+  .anfb-button-group {
+    display: flex;
+
+    /**
+     * Button group button.
+     */
+    & > button {
+      flex: 1;
+      justify-content: center;
+    }
+
+    /**
+     * Top attached button group.
+     */
+    &[class*="top attached"] {
+      & > button {
+        &:first-child {
+          border-bottom-left-radius: 0;
+        }
+        &:last-child {
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    /**
+     * Bottom attached button group.
+     */
+    &[class*="bottom attached"] {
+      & > button {
+        &:first-child {
+          border-top-left-radius: 0;
+        }
+        &:last-child {
+          border-top-right-radius: 0;
+        }
+      }
+    }
+
+    /**
+     * Attached button groups.
+     */
+    &.attached + .anfb-button-group.attached {
+      margin-top: -1px;
+    }
+  }
+
+  /**
+   * Button.
+   */
+  .anfb-button {
+    /**
+     * Add active styles when toggled.
+     */
+    &.is-toggled {
+      background: #eee;
+      box-shadow: inset 0 0 1px 1px var(--wp-admin-theme-color);
+      &:hover {
+        color: var(--wp-admin-theme-color-darker-10);
+      }
+    }
+  }
+
+}
+/**
+  * Help modal.
+  */
+.wsd-anfb-help {
+  /**
+   * Help text container.
+   */
+  .anfb-help {
+    h4 {
+      margin-bottom: 0;
+      & + p {
+        margin-top: 0;
+      }
+    }
+  }
+}
