@@ -5,14 +5,15 @@ const config = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
 	...config,
-	output: {
-		...config.output,
-		jsonpFunction: 'anfbJsonp',
+	entry: {
+		index: './src/index.js',
+		init: './src/init.js',
 	},
 	optimization: {
 		...config.optimization,
 		splitChunks: {
 			...config.optimization.splitChunks,
+			minSize: 0,
 			cacheGroups: {
 				...config.optimization.splitChunks.cacheGroups,
 				aos: {
