@@ -3,7 +3,7 @@
  * Plugin Name: Animations for Blocks
  * Plugin URI: https://wordpress.org/plugins/animations-for-blocks
  * Description: Allows to add animations to Gutenberg blocks on scroll.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: websevendev
  * Author URI: https://chap.website/author/websevendev
  */

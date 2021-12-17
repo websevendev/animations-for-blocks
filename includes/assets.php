@@ -10,11 +10,13 @@ defined('ABSPATH') || exit;
  * @see https://github.com/michalsnik/aos
  */
 function register_aos() {
+	$asset = include WSD_ANFB_DIR . '/build/index.asset.php';
+
 	wp_register_style(
 		WSD_ANFB_AOS_HANDLE,
 		plugins_url('build/aos.css', WSD_ANFB_FILE),
 		[],
-		'3.0.0-beta.6',
+		$asset['version'], // 3.0.0-beta.6
 		'all'
 	);
 
@@ -22,7 +24,7 @@ function register_aos() {
 		WSD_ANFB_AOS_HANDLE,
 		plugins_url('build/aos.js', WSD_ANFB_FILE),
 		[],
-		'3.0.0-beta.6',
+		$asset['version'], // 3.0.0-beta.6
 		true
 	);
 }
