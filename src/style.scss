@@ -20,15 +20,8 @@
   /**
    * Hide block toolbar during animation.
    */
-  .editor-block-toolbar {
+  .block-editor-block-toolbar {
     display: none !important;
-  }
-
-  /**
-   * Hide block outline during animation.
-   */
-  .editor-block-list__block-edit:before {
-    outline-color: rgba(0, 0, 0, 0) !important;
   }
 }
 

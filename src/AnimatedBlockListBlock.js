@@ -179,7 +179,7 @@ export default class AnimatedBlockListBlock extends Component {
 					...wrapperProps,
 					...animationProps,
 					'data-aos-id': this.props.clientId,
-					'data-aos-anchor': '.editor-block-list__block-edit',
+					'data-aos-anchor': '.block-editor-block-list__block',
 				};
 			}
 		}
