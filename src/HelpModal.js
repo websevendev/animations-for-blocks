@@ -33,6 +33,7 @@ export default HelpModal = () => {
 					className='wsd-anfb-help'
 					title={__('Animations for Blocks help', 'animations-for-blocks')}
 					onRequestClose={() => setIsOpen(false)}
+					style={{maxWidth: 720}}
 				>
 					<div className='anfb-help'>
 						<h3>{__(`Options`, 'animations-for-blocks')}</h3>

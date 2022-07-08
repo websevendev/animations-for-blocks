@@ -24,17 +24,13 @@ function block_args($args, $name) {
 		$args['attributes'] = [];
 	}
 
-	/**
-	 * Register ANFB attribute.
-	 */
+	/** Register ANFB attribute. */
 	$args['attributes']['animationsForBlocks'] = [
 		'type' => 'object',
 		'default' => [],
 	];
 
-	/**
-	 * Override `render_callback` to add animation attributes.
-	 */
+	/** Override `render_callback` to add animation attributes. */
 	if(isset($args['render_callback']) && is_callable($args['render_callback'])) {
 		$cb = $args['render_callback'];
 		$args['render_callback'] = function($attributes, $content, $block = null) use ($cb, $name) {

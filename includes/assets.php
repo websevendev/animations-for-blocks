@@ -71,15 +71,11 @@ function editor_assets() {
  */
 function front_end_assets() {
 	if(apply_filters('anfb_load_styles', true)) {
-		/**
-		 * Load Animate on Scroll styles.
-		 */
+		/** Load Animate on Scroll styles. */
 		wp_enqueue_style(WSD_ANFB_AOS_HANDLE);
 	}
 	if(apply_filters('anfb_load_scripts', true)) {
-		/**
-		 * Initialize Animate on Scroll library.
-		 */
+		/** Initialize Animate on Scroll library. */
 		$asset = include WSD_ANFB_DIR . '/build/init.asset.php';
 		wp_enqueue_script(
 			'animations-for-blocks',
