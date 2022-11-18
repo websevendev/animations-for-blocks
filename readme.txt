@@ -2,9 +2,9 @@
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, move
 Requires at least: 5.6
-Tested up to: 6.0
+Tested up to: 6.1.1
 Requires PHP: 5.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,11 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.0.6 =
+* Fix `once` and `mirror` options detection in dynamic blocks.
+* Update `@wordpress/*` packages.
+* Test with WordPress 6.1.1.
 
 = 1.0.5 =
 * Update `@wordpress/*` packages.

@@ -43,12 +43,12 @@ function get_animation_attributes($args = []) {
 	}
 
 	/** Once. */
-	if($args['once'] === 'true') {
+	if($args['once'] === 'true' || $args['once'] === true) {
 		$attributes['data-aos-once'] = 'true';
 	}
 
 	/** Mirror. */
-	if($args['mirror'] === 'true') {
+	if($args['mirror'] === 'true' || $args['mirror'] === true) {
 		$attributes['data-aos-mirror'] = 'true';
 	}
 
