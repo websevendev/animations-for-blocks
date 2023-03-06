@@ -156,13 +156,13 @@ class AFGInspectorControls extends Component {
 									className='anfb-button'
 									isSecondary
 									onClick={() => document.dispatchEvent(this.anfbUpdateEvent)}
-									text={__('Animate block', 'animations-for-blocks')}
+									text={__('Preview', 'animations-for-blocks')}
 								/>
 								<Button
 									className='anfb-button'
 									isSecondary
 									onClick={() => document.dispatchEvent(GLOBAL_UPDATE_EVENT)}
-									text={__('Animate all blocks', 'animations-for-blocks')}
+									text={__('Preview all', 'animations-for-blocks')}
 								/>
 							</ButtonGroup>
 							<ButtonGroup className='bottom attached anfb-button-group'>
