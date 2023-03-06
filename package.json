@@ -6,7 +6,7 @@
 	"license": "GPL-2.0-or-later",
 	"main": "src/index.js",
 	"scripts": {
-		"start": "wp-scripts start",
+		"start": "wp-scripts start --hot --allowed-hosts all",
 		"build": "wp-scripts build",
 		"release": "npm run build && ./bin/build-plugin-zip.sh"
 	},
