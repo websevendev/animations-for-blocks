@@ -1,15 +1,13 @@
-import {
-	__,
-} from '@wordpress/i18n';
+import {__} from '@wordpress/i18n'
 
 import {
 	Component,
 	Fragment,
-} from '@wordpress/element';
+} from '@wordpress/element'
 
 import {
 	InspectorControls,
-} from '@wordpress/block-editor';
+} from '@wordpress/block-editor'
 
 import {
 	PanelBody,
@@ -20,35 +18,36 @@ import {
 	TextControl,
 	ButtonGroup,
 	Button,
-} from '@wordpress/components';
+} from '@wordpress/components'
 
-import cx from 'classnames';
+import cx from 'classnames'
 
-import HelpModal from './HelpModal';
+import HelpModal from './HelpModal'
 
 import {
 	ANIMATIONS,
 	VARIATIONS,
 	EASINGS,
 	ANCHOR_PLACEMENTS,
-} from './aos-data';
+} from './aos-data'
 
-const GLOBAL_UPDATE_EVENT = new CustomEvent('anfb:update');
+const GLOBAL_UPDATE_EVENT = new CustomEvent('anfb:update')
 
 /**
  * Inspector controls for Animations for Blocks.
  */
 class AFGInspectorControls extends Component {
-	static anfbUpdateEvent = false;
+
+	static anfbUpdateEvent = false
 
 	constructor() {
-		super(...arguments);
+		super(...arguments)
 
 		this.state = {
 			showAdvancedSettings: false,
-		};
+		}
 
-		this.updateAttributes = this.updateAttributes.bind(this);
+		this.updateAttributes = this.updateAttributes.bind(this)
 	}
 
 	/**
@@ -59,7 +58,7 @@ class AFGInspectorControls extends Component {
 		 * Setup event that is called when animation options are updated,
 		 * used to trigger reanimation of the editor BlockListBlock.
 		 */
-		this.anfbUpdateEvent = new CustomEvent('anfb:update:' + this.props.clientId);
+		this.anfbUpdateEvent = new CustomEvent('anfb:update:' + this.props.clientId)
 	}
 
 	/**
@@ -68,15 +67,13 @@ class AFGInspectorControls extends Component {
 	 * @param {object} attributesToUpdate
 	 */
 	updateAttributes(attributesToUpdate) {
-		let {animationsForBlocks} = this.props.attributes;
-		let nextAttributes = Object.assign({}, animationsForBlocks, attributesToUpdate);
-		this.props.setAttributes({animationsForBlocks: nextAttributes});
+		let {animationsForBlocks} = this.props.attributes
+		let nextAttributes = Object.assign({}, animationsForBlocks, attributesToUpdate)
+		this.props.setAttributes({animationsForBlocks: nextAttributes})
 
-		/**
-		 * Trigger update event.
-		 */
+		/** Trigger update event. */
 		if(nextAttributes.animation && nextAttributes.animation !== 'none') {
-			document.dispatchEvent(this.anfbUpdateEvent);
+			document.dispatchEvent(this.anfbUpdateEvent)
 		}
 	}
 
@@ -84,16 +81,14 @@ class AFGInspectorControls extends Component {
 	 * Render Animations for Blocks inspector controls.
 	 */
 	render() {
-		let {animationsForBlocks} = this.props.attributes;
+		let {animationsForBlocks} = this.props.attributes
 
-		/**
-		 * Block doesn't support adding custom attributes.
-		 */
+		/** Block doesn't support adding custom attributes. */
 		if(!animationsForBlocks) {
-			return null;
+			return null
 		}
 
-		let {showAdvancedSettings} = this.state;
+		let {showAdvancedSettings} = this.state
 
 		let {
 			animation,
@@ -105,7 +100,7 @@ class AFGInspectorControls extends Component {
 			easing,
 			offset,
 			anchorPlacement,
-		} = animationsForBlocks;
+		} = animationsForBlocks
 
 		return (
 			<InspectorControls>
@@ -124,7 +119,7 @@ class AFGInspectorControls extends Component {
 								variation: (nextAnimation === 'none' || VARIATIONS[nextAnimation].map(variation => variation.value).includes(variation))
 											? variation
 											: VARIATIONS[nextAnimation][0].value,
-							});
+							})
 						}}
 					/>
 					{animation && animation !== 'none' && (
@@ -219,8 +214,8 @@ class AFGInspectorControls extends Component {
 					)}
 				</PanelBody>
 			</InspectorControls>
-		);
+		)
 	}
 }
 
-export default AFGInspectorControls;
+export default AFGInspectorControls

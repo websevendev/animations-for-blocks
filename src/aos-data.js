@@ -1,6 +1,4 @@
-import {
-	__,
-} from '@wordpress/i18n';
+import {__} from '@wordpress/i18n'
 
 export const ANIMATIONS = [
 	{
@@ -23,7 +21,7 @@ export const ANIMATIONS = [
 		label: __('Zoom', 'animations-for-blocks'),
 		value: 'zoom',
 	},
-];
+]
 
 export const VARIATIONS = {
 	fade: [
@@ -142,7 +140,7 @@ export const VARIATIONS = {
 			value: 'out-right',
 		},
 	],
-};
+}
 
 export const EASINGS = [
 	{
@@ -225,7 +223,7 @@ export const EASINGS = [
 		label: __('linear', 'animations-for-blocks'),
 		value: 'linear',
 	},
-];
+]
 
 export const ANCHOR_PLACEMENTS = [
 	{
@@ -264,4 +262,4 @@ export const ANCHOR_PLACEMENTS = [
 		label: __('center-top', 'animations-for-blocks'),
 		value: 'center-top',
 	},
-];
+]

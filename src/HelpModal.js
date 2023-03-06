@@ -1,23 +1,21 @@
-import {
-	__,
-} from '@wordpress/i18n';
+import {__} from '@wordpress/i18n'
 
 import {
 	Fragment,
 	useState,
-} from '@wordpress/element';
+} from '@wordpress/element'
 
 import {
 	Button,
 	Modal,
-} from '@wordpress/components';
+} from '@wordpress/components'
 
 /**
  * Modal that displays help info for Animations for Blocks.
  */
-let HelpModal;
-export default HelpModal = () => {
-	const [isOpen, setIsOpen] = useState(false);
+const HelpModal = () => {
+
+	const [isOpen, setIsOpen] = useState(false)
 
 	return (
 		<Fragment>
@@ -61,6 +59,7 @@ export default HelpModal = () => {
 				</Modal>
 			)}
 		</Fragment>
-	);
-};
+	)
+}
 
+export default HelpModal

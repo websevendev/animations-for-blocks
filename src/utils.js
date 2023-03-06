@@ -5,10 +5,11 @@
  * @return {object} AOS props.
  */
 export const getAnimationProps = animationsForBlocks => {
-	let animationProps = {};
+
+	let animationProps = {}
 
 	if(!animationsForBlocks) {
-		return animationProps;
+		return animationProps
 	}
 
 	const {
@@ -21,65 +22,49 @@ export const getAnimationProps = animationsForBlocks => {
 		easing,
 		offset,
 		anchorPlacement,
-	} = animationsForBlocks;
+	} = animationsForBlocks
 
 	if(!animation || animation === 'none') {
-		return animationProps;
+		return animationProps
 	}
 
-	/**
-	 * Animation.
-	 */
-	animationProps['data-aos'] = animation === variation ? animation : animation + '-' + variation;
+	/** Animation. */
+	animationProps['data-aos'] = animation === variation ? animation : animation + '-' + variation
 
-	/**
-	 * Delay.
-	 */
+	/** Delay. */
 	if(delay && delay !== 0) {
-		animationProps['data-aos-delay'] = parseInt(delay);
+		animationProps['data-aos-delay'] = parseInt(delay)
 	}
 
-	/**
-	 * Duration.
-	 */
+	/** Duration. */
 	if(duration && duration !== 400) {
-		animationProps['data-aos-duration'] = parseInt(duration);
+		animationProps['data-aos-duration'] = parseInt(duration)
 	}
 
-	/**
-	 * Once.
-	 */
+	/** Once. */
 	if(once) {
-		animationProps['data-aos-once'] = 'true';
+		animationProps['data-aos-once'] = 'true'
 	}
 
-	/**
-	 * Mirror.
-	 */
+	/** Mirror. */
 	if(mirror) {
-		animationProps['data-aos-mirror'] = 'true';
+		animationProps['data-aos-mirror'] = 'true'
 	}
 
-	/**
-	 * Easing.
-	 */
+	/** Easing. */
 	if(easing && easing !== 'ease') {
-		animationProps['data-aos-easing'] = easing;
+		animationProps['data-aos-easing'] = easing
 	}
 
-	/**
-	 * Offset.
-	 */
+	/** Offset. */
 	if(offset && offset !== 120) {
-		animationProps['data-aos-offset'] = parseInt(offset);
+		animationProps['data-aos-offset'] = parseInt(offset)
 	}
 
-	/**
-	 * Anchor placement.
-	 */
+	/** Anchor placement. */
 	if(anchorPlacement && anchorPlacement !== 'top-bottom') {
-		animationProps['data-aos-anchor-placement'] = anchorPlacement;
+		animationProps['data-aos-anchor-placement'] = anchorPlacement
 	}
 
-	return animationProps;
+	return animationProps
 }
