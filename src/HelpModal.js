@@ -26,7 +26,7 @@ export default HelpModal = () => {
 				className='anfb-help-button'
 				aria-label={__('Show Animations for Blocks help', 'animations-for-blocks')}
 				onClick={() => setIsOpen(true)}
-				text={__('Show help')}
+				text={__('Show help', 'animations-for-blocks')}
 			/>
 			{isOpen && (
 				<Modal
