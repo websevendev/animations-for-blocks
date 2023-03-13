@@ -1,0 +1,25 @@
+.wsd-anfb__range-control {
+	margin-bottom: 8px !important;
+
+	& + .wsd-anfb__range-control {
+		margin-top: -8px !important;
+	}
+
+	.components-range-control__root {
+		margin-left: 4px;
+		max-width: calc(100% - 8px);
+
+		.components-range-control__marks {
+			margin-top: 6px;
+		}
+
+		.components-range-control__tooltip {
+
+			/** Tooltip is visually hidden while `aria-hidden` is `false`. */
+			&[aria-hidden="false"] {
+				/** Prevents horizontal scrollbar when range control is near the end and tooltip is hidden. */
+				display: none;
+			}
+		}
+	}
+}

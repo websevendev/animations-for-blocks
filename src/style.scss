@@ -1,30 +1,55 @@
-/**
- * Animate on Scroll element in the editor.
- */
-[data-aos] {
+@use '../node_modules/aos/dist/aos.css';
+@use './style-compat.scss';
 
-	/** Hide if not initialized yet. */
-	&:not(.aos-init) {
-		opacity: 0 !important;
-		transition: none !important;
+/** Block editor canvas. */
+.editor-styles-wrapper {
+
+	/** Animate on Scroll element. */
+	[data-aos] {
+		pointer-events: auto;
+
+		/** Hidden state before animation has begun. */
+		&.aos-init:not(.aos-animate) {
+			opacity: 0 !important;
+			transition: none !important;
+		}
+
+		/** Default duration. */
+		&:not([data-aos-duration]) {
+			transition-duration: 0.4s;
+		}
+
+		/** Default easing. */
+		&:not([data-aos-easing]) {
+			transition-timing-function: ease;
+		}
 	}
 
-	/** Disable pointer events during animation to prevent re-render of the BlockListBlock. */
-	&, & * {
-		pointer-events: none !important;
-	}
+	& > .is-root-container {
 
-	/** Hide block toolbar during animation. */
-	.block-editor-block-toolbar {
-		display: none !important;
+		/** Hide scrollbars since animation elements can go offscreen. */
+		&:has(.wsd-anfb-is-animating) {
+			overflow: hidden;
+		}
 	}
 }
 
-/**
- * Hide horizontal scrollbar since animation elements can go offscreen.
- */
-.edit-post-layout__content {
-	overflow-x: hidden;
+/** Block editor (non-iframe only). */
+.edit-post-visual-editor {
+
+	/** Animating block. */
+	&:has(.wsd-anfb-is-animating) {
+
+		/** Hide block toolbar during animation. */
+		.block-editor-block-contextual-toolbar:not(.is-fixed) {
+			display: none;
+		}
+
+		/** Hide block appenders during animation. */
+		.block-list-appender {
+			display: none;
+		}
+	}
 }
 
 /**
@@ -32,67 +57,53 @@
  */
 .wsd-anfb {
 
-	/** Range control number input should fit 4 numbers. */
-	.components-range-control__number {
-		min-width: 60px;
-	}
+	&.components-panel {
 
-	/** Advanced settings wrapper. */
-	.anfb-advanced-settings {
-		margin-top: 16px;
-	}
+		border-top: 1px solid rgb(221, 221, 221);
 
-	/** Button groups. */
-	.anfb-button-group {
-		display: flex;
-
-		/** Button group button. */
-		& > button {
-			flex: 1;
-			justify-content: center;
+		&:only-child {
+			border-bottom: 1px solid rgb(221, 221, 221);
 		}
 
-		/** Top attached button group. */
-		&[class*="top attached"] {
-
-			& > button {
-
-				&:first-child {
-					border-bottom-left-radius: 0;
-				}
-
-				&:last-child {
-					border-bottom-right-radius: 0;
-				}
-			}
-		}
-
-		/** Bottom attached button group. */
-		&[class*="bottom attached"] {
-
-			& > button {
-
-				&:first-child {
-					border-top-left-radius: 0;
-				}
-
-				&:last-child {
-					border-top-right-radius: 0;
-				}
-			}
-		}
-
-		/** Attached button groups. */
-		&.attached + .anfb-button-group.attached {
+		&:not(:first-child) {
 			margin-top: -1px;
 		}
+
+		&:last-child {
+			margin-bottom: -1px;
+		}
+
+		& > .components-panel__header {
+			border-bottom: 0;
+		}
+
+		& > .components-panel__body {
+			border-top: 0;
+			padding-top: 8px;
+
+			& > .components-v-stack {
+
+				& > .components-base-control {
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
 
-	/** Button. */
-	.anfb-button {
+	&__menu-group {
 
-		/** Add active styles when toggled. */
-		&.is-toggled {
+		.components-menu-item__button {
+
+			&[disabled] {
+				pointer-events: none;
+			}
+		}
+	}
+
+	/** Advanced settings button. */
+	& &__button {
+
+		&-active {
 			background: #eee;
 			box-shadow: inset 0 0 1px 1px var(--wp-admin-theme-color);
 
@@ -103,13 +114,12 @@
 	}
 }
 
-/**
- * Help modal.
- */
-.wsd-anfb-help {
+/** Help modal. */
+.wsd-anfb__help {
+	max-width: 720px;
 
 	/** Help text container. */
-	.anfb-help {
+	& &__content {
 
 		h4 {
 			margin-bottom: 0;

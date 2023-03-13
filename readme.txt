@@ -2,17 +2,17 @@
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, move
 Requires at least: 5.6
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 5.4
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Allows to add animations to Gutenberg blocks on scroll.
+Allows to add animations to block editor blocks on scroll.
 
 == Description ==
 
-Lightweight plugin that adds additional inspector controls to Gutenberg blocks that allow to animate the block once it becomes visible to the user during scrolling. The controls can be used to select an animation type (fade, flip, slide, zoom), variation (different directions), as well as delay, duration and more advanced settings. Upon changing an option the animation can be immediately previewed in the editor.
+Lightweight plugin that adds additional inspector controls to block editor blocks that allow to animate the block once it becomes visible to the user during scrolling. The controls can be used to select an animation type (fade, flip, slide, zoom), variation (different directions), as well as delay, duration and more advanced settings. Upon changing an option the animation can be immediately previewed in the editor.
 
 This plugin uses [AOS - Animate on scroll library](https://github.com/michalsnik/aos) and adds its' stylesheet (**2.8 kB**) and script (**5.2 kB**) to the front end as well as a script that initializes the animations (**1.3 kB**).
 
@@ -63,6 +63,17 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.1.0 =
+* Animation preview works in iframe-d block editors.
+* Rework controls.
+* Add ability to copy-paste animation settings.
+* Update Animation container block to API version 2.
+* Use `render_block` filter to apply animation attributes instead of overriding block's `render_callback`.
+* Add `anfb_aos_attributes` filter that can modify attributes that are added to animated HTML elements.
+* Convert some code to typescript.
+* Update `@wordpress/*` packages.
+* Test with WordPress 6.2-RC1.
 
 = 1.0.6 =
 * Fix `once` and `mirror` options detection in dynamic blocks.

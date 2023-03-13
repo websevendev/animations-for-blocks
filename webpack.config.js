@@ -3,8 +3,6 @@
  */
 const config = require('@wordpress/scripts/config/webpack.config')
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 module.exports = {
 	...config,
 	entry: {
@@ -26,11 +24,4 @@ module.exports = {
 			},
 		},
 	},
-	...(!isProduction ? {
-		devServer: {
-			...config.devServer,
-			/** Fix `[webpack-dev-server] Invalid Host/Origin header` error with `wp-scripts start --hot` */
-			allowedHosts: 'all',
-		},
-	} : {}),
 }

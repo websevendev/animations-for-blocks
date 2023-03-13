@@ -1,10 +1,11 @@
+import type {
+	AnimationsForBlocks
+} from './types'
+
 /**
  * Construct props needed for animation from animationsForBlocks object.
- *
- * @param {object} animationsForBlocks ANFB settings attribute.
- * @return {object} AOS props.
  */
-export const getAnimationProps = animationsForBlocks => {
+export const getAnimationProps = (animationsForBlocks: AnimationsForBlocks = {}, context: 'save' | 'edit' = 'save'): Record<string, string> => {
 
 	let animationProps = {}
 
@@ -33,12 +34,22 @@ export const getAnimationProps = animationsForBlocks => {
 
 	/** Delay. */
 	if(delay && delay !== 0) {
-		animationProps['data-aos-delay'] = parseInt(delay)
+		animationProps['data-aos-delay'] = delay.toString()
 	}
 
 	/** Duration. */
 	if(duration && duration !== 400) {
-		animationProps['data-aos-duration'] = parseInt(duration)
+		animationProps['data-aos-duration'] = duration.toString()
+	}
+
+	/** Easing. */
+	if(easing && easing !== 'ease') {
+		animationProps['data-aos-easing'] = easing
+	}
+
+	/** Skip attributes not needed in the editor. */
+	if(context === 'edit') {
+		return animationProps
 	}
 
 	/** Once. */
@@ -51,14 +62,9 @@ export const getAnimationProps = animationsForBlocks => {
 		animationProps['data-aos-mirror'] = 'true'
 	}
 
-	/** Easing. */
-	if(easing && easing !== 'ease') {
-		animationProps['data-aos-easing'] = easing
-	}
-
 	/** Offset. */
 	if(offset && offset !== 120) {
-		animationProps['data-aos-offset'] = parseInt(offset)
+		animationProps['data-aos-offset'] = offset.toString()
 	}
 
 	/** Anchor placement. */

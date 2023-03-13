@@ -1,4 +1,5 @@
 import AOS from 'aos'
+import '../node_modules/aos/dist/aos.css'
 
 /**
  * Allow to customize default AOS settings by adding an object to window.
@@ -30,5 +31,5 @@ const settings = window.anfbAosSettings || {}
  */
 document.addEventListener(
 	'DOMContentLoaded',
-	() => setTimeout(() => window.AOS ? window.AOS.init(settings) : AOS.init(settings), 100)
+	() => setTimeout(() => window.AOS ? window.AOS.init(settings) : AOS.init(settings), 50)
 )

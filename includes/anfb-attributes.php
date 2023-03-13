@@ -9,6 +9,7 @@ defined('ABSPATH') || exit;
  * @return array Attributes to add to root element.
  */
 function get_animation_attributes($args = []) {
+
 	$args = wp_parse_args($args, [
 		'animation' => 'none',
 		'variation' => '',
@@ -42,6 +43,11 @@ function get_animation_attributes($args = []) {
 		$attributes['data-aos-duration'] = (int)$args['duration'];
 	}
 
+	/** Easing. */
+	if(!empty($args['easing']) && $args['easing'] !== 'ease') {
+		$attributes['data-aos-easing'] = $args['easing'];
+	}
+
 	/** Once. */
 	if($args['once'] === 'true' || $args['once'] === true) {
 		$attributes['data-aos-once'] = 'true';
@@ -50,11 +56,6 @@ function get_animation_attributes($args = []) {
 	/** Mirror. */
 	if($args['mirror'] === 'true' || $args['mirror'] === true) {
 		$attributes['data-aos-mirror'] = 'true';
-	}
-
-	/** Easing. */
-	if(!empty($args['easing']) && $args['easing'] !== 'ease') {
-		$attributes['data-aos-easing'] = $args['easing'];
 	}
 
 	/** Offset. */
@@ -67,7 +68,7 @@ function get_animation_attributes($args = []) {
 		$attributes['data-aos-anchor-placement'] = $args['anchorPlacement'];
 	}
 
-	return $attributes;
+	return apply_filters('anfb_aos_attributes', $attributes, $args);
 }
 
 /**
@@ -79,17 +80,16 @@ function get_animation_attributes($args = []) {
  * @return string Block HTML with animation attributes.
  */
 function add_animation_attributes($args, $html, $name = '') {
+
 	$dom = get_dom($html);
 	$body = $dom->getElementsByTagName('body')->item(0);
 
 	/** Wrap elements when there are more than 1. */
-	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	if($body->childNodes->length > 1) {
 		$container = $dom->createElement('div');
 		$container->setAttribute('class', 'anfb-animation-container');
 		$container->setAttribute('data-block', esc_attr($name));
 		$remove = [];
-		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		foreach($body->childNodes as $node) {
 			if(is_dom_element($node)) {
 				$container->appendChild($node->cloneNode(true));
@@ -97,13 +97,12 @@ function add_animation_attributes($args, $html, $name = '') {
 			}
 		}
 		foreach($remove as $node) {
-			$node->parentNode->removeChild($node); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			$node->parentNode->removeChild($node);
 		}
 		$body->appendChild($container);
 	}
 
 	/** Add attributes. */
-	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	foreach($body->childNodes as $root) {
 		if(method_exists($root, 'setAttribute')) {
 			foreach(get_animation_attributes($args) as $key => $value) {

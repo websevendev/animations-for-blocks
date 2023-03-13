@@ -2,10 +2,6 @@ import {__} from '@wordpress/i18n'
 
 export const ANIMATIONS = [
 	{
-		label: __('None', 'animations-for-blocks'),
-		value: 'none',
-	},
-	{
 		label: __('Fade', 'animations-for-blocks'),
 		value: 'fade',
 	},

@@ -6,7 +6,8 @@
 	"license": "GPL-2.0-or-later",
 	"main": "src/index.js",
 	"scripts": {
-		"start": "wp-scripts start --hot --allowed-hosts all",
+		"start": "wp-scripts start",
+		"start:hot": "wp-scripts start --hot --allowed-hosts all",
 		"build": "wp-scripts build",
 		"release": "npm run build && ./bin/build-plugin-zip.sh"
 	},
@@ -15,12 +16,17 @@
 		"@wordpress/blocks": "^12.5.0",
 		"@wordpress/components": "^23.5.0",
 		"@wordpress/compose": "^6.5.0",
+		"@wordpress/data": "^8.5.0",
 		"@wordpress/dom-ready": "^3.28.0",
 		"@wordpress/element": "^5.5.0",
 		"@wordpress/hooks": "^3.28.0",
 		"@wordpress/i18n": "^4.28.0",
-		"@wordpress/scripts": "^25.5.1",
+		"@wordpress/icons": "^9.19.0",
+		"@wordpress/keycodes": "^3.28.0",
+		"@wordpress/notices": "^3.28.0",
+		"@wordpress/scripts": "25.2.0",
 		"aos": "^3.0.0-beta.6",
-		"classnames": "^2.3.2"
+		"classnames": "^2.3.2",
+		"react": "^18.2.0"
 	}
 }

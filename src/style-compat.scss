@@ -1,0 +1,121 @@
+/**
+ * `className` specified in `BlockListBlock` `wrapperProps` is sometimes not applied.
+ * This uses data-attributes instead of class names.
+ * Might be safe to remove later.
+ */
+
+/** Block editor canvas. */
+.editor-styles-wrapper {
+
+	/** Animate on Scroll element. */
+	[data-aos] {
+		pointer-events: initial;
+
+		&[data-anfb-init]:not([data-anfb-animate]) {
+			opacity: 0 !important;
+			transition: none !important;
+		}
+	}
+
+	& > .is-root-container {
+
+		/** Hide scrollbars since animation elements can go offscreen. */
+		&:has([data-anfb-is-animating]) {
+			overflow: hidden;
+		}
+	}
+}
+
+/** Block editor (non-iframe only). */
+.edit-post-visual-editor {
+
+	/** Animating block. */
+	&:has([data-anfb-is-animating]) {
+
+		/** Hide block toolbar during animation. */
+		.block-editor-block-contextual-toolbar:not(.is-fixed) {
+			display: none;
+		}
+
+		/** Hide block appenders during animation. */
+		.block-list-appender {
+			display: none;
+		}
+	}
+}
+
+@media screen {
+
+	html:not(.no-js) {
+
+		[data-aos^="fade"][data-aos^="fade"] {
+
+			&[data-anfb-animate] {
+				opacity: 1;
+				transform: none;
+			}
+		}
+
+		[data-aos^="zoom"][data-aos^="zoom"] {
+
+			&[data-anfb-animate] {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		[data-aos^="slide"][data-aos^="slide"] {
+
+			&[data-anfb-animate] {
+				visibility: visible;
+				transform: translate3d(0, 0, 0);
+			}
+		}
+
+		[data-aos="flip-left"] {
+
+			&[data-anfb-animate] {
+				transform: perspective(2500px) rotateY(0);
+			}
+		}
+
+		[data-aos="flip-right"] {
+
+			&[data-anfb-animate] {
+				transform: perspective(2500px) rotateY(0);
+			}
+		}
+
+		[data-aos="flip-up"] {
+
+			&[data-anfb-animate] {
+				transform: perspective(2500px) rotateX(0);
+			}
+		}
+
+		[data-aos="flip-down"] {
+
+			&[data-anfb-animate] {
+				transform: perspective(2500px) rotateX(0);
+			}
+		}
+	}
+}
+
+[data-aos] {
+
+	@for $i from 1 through 60 {
+
+		&[data-aos][data-aos-duration="#{$i * 50}"] {
+			transition-duration: #{$i * 50}ms;
+		}
+
+		&[data-aos][data-aos-delay="#{$i * 50}"] {
+			transition-delay: 0s;
+
+			&[data-anfb-animate] {
+				transition-delay: #{$i * 50}ms;
+			}
+		}
+	}
+}
