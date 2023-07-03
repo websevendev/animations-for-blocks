@@ -1,9 +1,9 @@
 === Animations for Blocks ===
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, move
-Requires at least: 5.6
+Requires at least: 6.2.0
 Tested up to: 6.2.2
-Requires PHP: 5.4
+Requires PHP: 7.4
 Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
