@@ -2,9 +2,9 @@
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, move
 Requires at least: 5.6
-Tested up to: 6.2
+Tested up to: 6.2.2
 Requires PHP: 5.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,11 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.1.1 =
+* Use `WP_HTML_Tag_Processor` for adding HTML attributes.
+* Blocks that render multiple root elements are no longer wrapped automatically. Use Animation container block to do it.
+* Move all PHP code to main file for simplicity.
 
 = 1.1.0 =
 * Animation preview works in iframe-d block editors.

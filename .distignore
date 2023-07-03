@@ -1,0 +1,14 @@
+.distignore
+.editorconfig
+.git
+.gitignore
+.phpcs.xml
+package-lock.json
+package.json
+webpack.config.js
+.vscode
+bin
+node_modules
+screenshots
+src
+LICENSE

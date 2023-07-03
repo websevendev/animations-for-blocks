@@ -9,7 +9,7 @@
 		"start": "wp-scripts start",
 		"start:hot": "wp-scripts start --hot --allowed-hosts all",
 		"build": "wp-scripts build",
-		"release": "npm run build && ./bin/build-plugin-zip.sh"
+		"release": "npm run build && wp dist-archive . ./animations-for-blocks.zip"
 	},
 	"devDependencies": {
 		"@wordpress/block-editor": "^11.5.0",
