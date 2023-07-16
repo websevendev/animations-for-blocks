@@ -57,6 +57,7 @@ import {
 import ButtonGroup from './button-group'
 import RangeControl from './range-control'
 import HelpModal from './HelpModal'
+import PluginSettingsModal from './PluginSettingsModal'
 
 import {
 	ANIMATIONS,
@@ -123,6 +124,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 
 	const hasAnimation = !!(animation && animation !== 'none')
 	const [showHelp, setShowHelp] = useState(false)
+	const [showPluginSettings, setShowPluginSettings] = useState(false)
 	const [showAdvancedSettings, setShowAdvancedSettings] = useState(false)
 	const [manualPasteMode, setManualPasteMode] = useState(false)
 	const anfbUpdateEvent = useRef<CustomEvent | null>(null)
@@ -196,7 +198,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 		<WPInspectorControls>
 			<Panel className='wsd-anfb'>
 				<PanelHeader>
-					<HStack align='center' justify='space-between'>
+					<HStack alignment='center' justify='space-between'>
 						<h2 style={{margin: 0}}>{__('Animation', 'animations-for-blocks')}</h2>
 						<DropdownMenu
 							icon={moreVerticalIcon}
@@ -272,6 +274,14 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 											onClose()
 										}}
 									/>
+									<MenuItem
+										icon={settingsIcon}
+										children={__('Settings', 'animations-for-blocks')}
+										onClick={() => {
+											setShowPluginSettings(true)
+											onClose()
+										}}
+									/>
 								</MenuGroup>
 								{Object.keys(animationsForBlocks).length > 0 && (
 									<MenuGroup>
@@ -329,14 +339,14 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 								onChange={(nextDelay: number) => updateAttributes({delay: nextDelay})}
 							/>
 							<Button
+								variant='secondary'
 								isSmall
 								className={cx('wsd-anfb__button', {
 									'wsd-anfb__button-active': showAdvancedSettings,
 								})}
-								isSecondary
 								onClick={() => setShowAdvancedSettings(!showAdvancedSettings)}
 							>
-								<HStack align='center' justify='center'>
+								<HStack alignment='center' justify='center'>
 									<Icon icon={settingsIcon} size={16} />
 									<span>{__('Advanced settings', 'animations-for-blocks')}</span>
 								</HStack>
@@ -386,7 +396,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 									isDragEnabled={false}
 									isUnitSelectTabbable={false}
 									units={UNIT_CONTROL_UNITS}
-									onChange={(nextOffset: string) => updateAttributes({offset: parseInt(nextOffset.replace('px', ''))})}
+									onChange={(nextOffset: string = '120') => updateAttributes({offset: parseInt(nextOffset.replace('px', ''))})}
 								/>
 							</>}
 						</>}
@@ -394,6 +404,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 				</PanelBody>
 			</Panel>
 			{showHelp && <HelpModal onRequestClose={() => setShowHelp(false)} />}
+			{showPluginSettings && <PluginSettingsModal onRequestClose={() => setShowPluginSettings(false)} />}
 		</WPInspectorControls>
 	)
 }

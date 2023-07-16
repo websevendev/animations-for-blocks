@@ -130,3 +130,15 @@
 		}
 	}
 }
+
+/** Settings modal. */
+.wsd-anfb__settings {
+
+	&__content {
+		margin-top: 12px;
+
+		& > :last-child {
+			margin-bottom: 0;
+		}
+	}
+}

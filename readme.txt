@@ -4,7 +4,7 @@ Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, mov
 Requires at least: 6.2.0
 Tested up to: 6.2.2
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Allows to add animations to block editor blocks on scroll.
 == Description ==
 
 Lightweight plugin that adds additional inspector controls to block editor blocks that allow to animate the block once it becomes visible to the user during scrolling. The controls can be used to select an animation type (fade, flip, slide, zoom), variation (different directions), as well as delay, duration and more advanced settings. Upon changing an option the animation can be immediately previewed in the editor.
+
+[Demo](https://playground.wordpress.net/?plugin=animations-for-blocks&url=%2Fwp-admin%2Fpost.php%3Fpost%3D2%26action%3Dedit)
 
 This plugin uses [AOS - Animate on scroll library](https://github.com/michalsnik/aos) and adds its' stylesheet (**2.8 kB**) and script (**5.2 kB**) to the front end as well as a script that initializes the animations (**1.3 kB**).
 
@@ -26,7 +28,7 @@ Animations for Blocks plugin works by using the Animate on Scroll (AOS) library 
 
 = Does it work for all blocks? =
 It should work with normal blocks that render a valid WP Element that can utilize the `blocks.getSaveContent.extraProps` filter as well as dynamic blocks that utilize a `render_callback`. Third party blocks that do something unorthodox may not work.
-[Known unsupported blocks](https://plugins.trac.wordpress.org/browser/animations-for-blocks/trunk/includes/unsupported-blocks.php)
+[Known unsupported blocks](https://github.com/websevendev/animations-for-blocks/blob/main/animations-for-blocks.php#L32-L35)
 
 = Disable block support =
 The `anfb_unsupported_blocks` filter can be used in your child theme's `functions.php` file to disable block animation support.
@@ -63,6 +65,12 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.1.2 =
+* Add option to disable automatic animation preview.
+* Add option to lazyload assets when an animated block is preset on the current page.
+* Update `@wordpress/*` packages.
+* Update screenshots.
 
 = 1.1.1 =
 * Use `WP_HTML_Tag_Processor` for adding HTML attributes.

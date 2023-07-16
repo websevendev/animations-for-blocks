@@ -15,6 +15,10 @@ import {
 import cx from 'classnames'
 
 import {
+	usePluginSettings,
+} from './PluginSettings'
+
+import {
 	ANIMATE_EVENT_TYPE,
 } from './InspectorControls'
 
@@ -54,9 +58,13 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 		duration = 400,
 	} = animationsForBlocks
 
+	const {
+		animateInEditor,
+	} = usePluginSettings()
+
 	const hasAnimation = !!(animation && animation !== 'none')
 	const [isAnimating, setIsAnimating] = useState<boolean>(false)
-	const [hasAnimated, setHasAnimated] = useState<boolean>(false)
+	const [hasAnimated, setHasAnimated] = useState<boolean>(!animateInEditor)
 	const animationDuration = useRef<number>(delay + duration)
 	const timeouts = useRef<ReturnType<typeof setTimeout>[]>([])
 	const elementContext = useContext<Element | DocumentFragment | null>(BlockList.__unstableElementContext)
@@ -97,10 +105,10 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
 		const hasAnimation = !!(animation && animation !== 'none')
 
-		if(hasAnimation) {
+		if(hasAnimation && animateInEditor) {
 			animateBlock()
 		}
-	}, [animationsForBlocks, animateBlock])
+	}, [animationsForBlocks, animateBlock, animateInEditor])
 
 	useEffect(() => {
 		if(!hasAnimated) {

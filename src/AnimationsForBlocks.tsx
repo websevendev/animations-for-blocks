@@ -17,16 +17,12 @@ import InspectorControls from './InspectorControls'
 import AnimatedBlockListBlock from './AnimatedBlockListBlock'
 
 import {
+	unsupportedBlocks,
+} from './data'
+
+import {
 	getAnimationProps,
 } from './utils'
-
-declare global {
-	interface Window {
-		anfbData: {
-			unsupportedBlocks: string[]
-		}
-	}
-}
 
 export interface AnimationsForBlocks {
 	animation?: string
@@ -47,7 +43,7 @@ const featureName = 'animationsForBlocks'
 const featureDefaultEnabled = applyFilters('anfb.defaultEnabled', true)
 const featureIsSupported = (block: any) => {
 	const name = block.name || block
-	if(window.anfbData.unsupportedBlocks.includes(name)) {
+	if(unsupportedBlocks.includes(name)) {
 		return false
 	}
 	return hasBlockSupport(block, featureName, featureDefaultEnabled)
