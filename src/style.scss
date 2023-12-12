@@ -61,16 +61,16 @@
 
 		border-top: 1px solid rgb(221, 221, 221);
 
-		&:only-child {
-			border-bottom: 1px solid rgb(221, 221, 221);
-		}
-
 		&:not(:first-child) {
 			margin-top: -1px;
 		}
 
+		& + .components-panel__body {
+			margin-top: 0;
+		}
+
 		&:last-child {
-			margin-bottom: -1px;
+			margin-bottom: 1px;
 		}
 
 		& > .components-panel__header {

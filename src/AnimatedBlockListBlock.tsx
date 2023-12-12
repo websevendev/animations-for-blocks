@@ -6,6 +6,7 @@ import {
 	useRef,
 	useCallback,
 	useContext,
+	createContext,
 } from '@wordpress/element'
 
 import {
@@ -34,6 +35,8 @@ import type {
 export interface AnimatedBlockListBlockProps extends BlockListBlockProps<AnimationsForBlocksBlockAttributes> {
 	BlockListBlock: React.FC<BlockListBlockProps<AnimationsForBlocksBlockAttributes>>
 }
+
+const BlockList__unstableElementContext = BlockList?.__unstableElementContext || createContext(null)
 
 const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
@@ -67,7 +70,7 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 	const [hasAnimated, setHasAnimated] = useState<boolean>(!animateInEditor)
 	const animationDuration = useRef<number>(delay + duration)
 	const timeouts = useRef<ReturnType<typeof setTimeout>[]>([])
-	const elementContext = useContext<Element | DocumentFragment | null>(BlockList.__unstableElementContext)
+	const elementContext = useContext<Element | DocumentFragment | null>(BlockList__unstableElementContext)
 
 	/** Sync animation duration. */
 	useEffect(() => {

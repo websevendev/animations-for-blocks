@@ -2,9 +2,9 @@
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, scroll, fade, flip, slide, zoom, move
 Requires at least: 6.2.0
-Tested up to: 6.2.2
+Tested up to: 6.4.2
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.1.3 =
+* Fix for crash with latest Gutenberg plugin due to `__unstableElementContext` being removed.
+* Update `@wordpress/*` packages.
 
 = 1.1.2 =
 * Add option to disable automatic animation preview.
