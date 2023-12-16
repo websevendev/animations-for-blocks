@@ -3,9 +3,9 @@
  * Plugin Name: Animations for Blocks
  * Plugin URI: https://wordpress.org/plugins/animations-for-blocks
  * Description: Allows to add animations to Gutenberg blocks on scroll.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: websevendev
- * Author URI: https://chap.website/author/websevendev
+ * Author URI: https://github.com/websevendev
  */
 
 namespace wsd\anfb;
@@ -83,6 +83,23 @@ function get_unsupported_blocks() {
 		'core/shortcode',
 		'core/legacy-widget',
 	]);
+}
+
+
+/**
+ * Determine if block is supported to have an animation.
+ *
+ * @param string $block_name
+ * @return boolean
+ */
+function is_supported($block_name) {
+
+	static $not_supported;
+	if(!is_array($not_supported)) {
+		$not_supported = get_unsupported_blocks();
+	}
+
+	return !in_array($block_name, $not_supported, true);
 }
 
 
@@ -315,18 +332,30 @@ function add_animation_attributes($html, $args) {
 
 
 /**
- * @param array $args
- * @param string $name
+ * Determine if given block attributes have an animation.
+ *
+ * @param array $block_attributes
+ * @return boolean
+ */
+function has_animation($block_attributes) {
+	return (
+		is_array($block_attributes)
+		&& isset($block_attributes['animationsForBlocks'])
+		&& isset($block_attributes['animationsForBlocks']['animation'])
+		&& !empty($block_attributes['animationsForBlocks']['animation'])
+		&& $block_attributes['animationsForBlocks']['animation'] !== 'none'
+	);
+}
+
+
+/**
+ * @param array $args Array of arguments for registering a block type.
+ * @param string $block_name Block type name including namespace.
  * @return array
  */
-function block_args($args, $name) {
+function block_args($args, $block_name) {
 
-	static $not_supported;
-	if(!is_array($not_supported)) {
-		$not_supported = get_unsupported_blocks();
-	}
-
-	if(in_array($name, $not_supported)) {
+	if(!is_supported($block_name)) {
 		return $args;
 	}
 
@@ -353,17 +382,7 @@ add_filter('register_block_type_args', __NAMESPACE__ . '\\block_args', 10, 2);
  */
 function animate_block($block_content, $block) {
 
-	static $not_supported;
-	if(!is_array($not_supported)) {
-		$not_supported = get_unsupported_blocks();
-	}
-
-	if(
-		!in_array($block['blockName'], $not_supported, true)
-		&& isset($block['attrs']['animationsForBlocks']['animation'])
-		&& !empty($block['attrs']['animationsForBlocks']['animation'])
-		&& $block['attrs']['animationsForBlocks']['animation'] !== 'none'
-	) {
+	if(is_supported($block['blockName']) && has_animation($block['attrs'])) {
 
 		if(
 			defined('REST_REQUEST')
