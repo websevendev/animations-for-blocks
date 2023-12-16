@@ -132,13 +132,10 @@ function register_assets() {
 	wp_register_script(
 		'animations-for-blocks',
 		plugins_url('build/init.js', WSD_ANFB_FILE),
-		array_merge(
-			array_diff(
-				$asset['dependencies'],
-				apply_filters('anfb_init_exclude_deps', ['wp-polyfill']) // Shouldn't need polyfill.
-			),
-			[apply_filters('anfb_aos_handle', WSD_ANFB_AOS_HANDLE)]
-		),
+		[
+			/** Use the filter below if your current setup already loads AOS. */
+			apply_filters('anfb_aos_handle', WSD_ANFB_AOS_HANDLE),
+		],
 		$asset['version'],
 		true
 	);
