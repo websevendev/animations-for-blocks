@@ -27,7 +27,7 @@ export const blockName = 'anfb/animation-container'
  * Container block that can be used to wrap and animate blocks that don't support custom attributes.
  */
 export const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 	title: __('Animation container', 'animations-for-blocks'),
 	description: __('A container that can be animated. Can be used to animate dynamic or other unsupported blocks.', 'animations-for-blocks'),
 	icon: 'media-interactive',

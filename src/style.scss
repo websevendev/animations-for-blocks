@@ -114,6 +114,17 @@
 	}
 }
 
+/** Inspector controls in advanced inspector controls area. */
+.block-editor-block-inspector__advanced .wsd-anfb {
+	margin-left: -16px;
+	margin-right: -16px;
+
+	&:has(+ .components-base-control) {
+		border-bottom: 1px solid rgb(221, 221, 221);
+		margin-bottom: 16px;
+	}
+}
+
 /** Help modal. */
 .wsd-anfb__help {
 	max-width: 720px;

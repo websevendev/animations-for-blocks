@@ -3,7 +3,7 @@
  * Plugin Name: Animations for Blocks
  * Plugin URI: https://wordpress.org/plugins/animations-for-blocks
  * Description: Allows to add animations to Gutenberg blocks on scroll.
- * Version: 1.1.4
+ * Version: 1.1.5
  * Author: websevendev
  * Author URI: https://github.com/websevendev
  */
@@ -29,6 +29,7 @@ function register_settings() {
 	$default_settings = [
 		'animateInEditor' => true,
 		'lazyloadAssets' => false,
+		'location' => 'default',
 	];
 
 	$sanitize_callback = function($settings) use ($default_settings) {
@@ -40,6 +41,7 @@ function register_settings() {
 		return [
 			'animateInEditor' => (bool)($settings['animateInEditor'] ?? $default_settings['animateInEditor']),
 			'lazyloadAssets' => (bool)($settings['lazyloadAssets'] ?? $default_settings['lazyloadAssets']),
+			'location' => sanitize_text_field($settings['location']) ?? $default_settings['location'],
 		];
 	};
 
@@ -59,6 +61,10 @@ function register_settings() {
 						'lazyloadAssets' => [
 							'type' => 'boolean',
 							'default' => $default_settings['lazyloadAssets'],
+						],
+						'location' => [
+							'type' => 'string',
+							'default' => $default_settings['location'],
 						],
 					],
 					'sanitize_callback' => $sanitize_callback,

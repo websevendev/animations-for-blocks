@@ -10,6 +10,7 @@ import {
 } from '@wordpress/element'
 
 import {
+	// @ts-ignore
 	BlockList,
 } from '@wordpress/block-editor'
 

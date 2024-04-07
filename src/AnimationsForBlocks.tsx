@@ -6,6 +6,7 @@ import {
 } from '@wordpress/hooks'
 
 import {
+	// @ts-ignore
 	hasBlockSupport,
 } from '@wordpress/blocks'
 

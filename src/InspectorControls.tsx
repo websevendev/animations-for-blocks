@@ -9,7 +9,7 @@ import {
 } from '@wordpress/element'
 
 import {
-	InspectorControls as WPInspectorControls,
+	// @ts-ignore
 	RichText,
 } from '@wordpress/block-editor'
 
@@ -42,6 +42,7 @@ import {
 
 import {
 	displayShortcut,
+// @ts-ignore
 } from '@wordpress/keycodes'
 
 import {
@@ -58,6 +59,7 @@ import ButtonGroup from './button-group'
 import RangeControl from './range-control'
 import HelpModal from './HelpModal'
 import PluginSettingsModal from './PluginSettingsModal'
+import InspectorControlsLocation from './InspectorControlsLocation'
 
 import {
 	ANIMATIONS,
@@ -195,7 +197,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 	}
 
 	return (
-		<WPInspectorControls>
+		<InspectorControlsLocation>
 			<Panel className='wsd-anfb'>
 				<PanelHeader>
 					<HStack alignment='center' justify='space-between'>
@@ -204,7 +206,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 							icon={moreVerticalIcon}
 							label={__('More actions', 'animations-for-blocks')}
 							toggleProps={{
-								isSmall: true,
+								size: 'small',
 							}}
 						>
 							{({onClose}) => <>
@@ -232,10 +234,8 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 										icon={copyIcon}
 										children={__('Copy animation', 'animations-for-blocks')}
 										disabled={!hasAnimation}
-										ref={copyAnimationRef}
-										onClick={() => {
-											onClose()
-										}}
+										ref={copyAnimationRef as any}
+										onClick={onClose}
 									/>
 									<MenuItem
 										icon={shortcodeIcon}
@@ -340,7 +340,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 							/>
 							<Button
 								variant='secondary'
-								isSmall
+								size='small'
 								className={cx('wsd-anfb__button', {
 									'wsd-anfb__button-active': showAdvancedSettings,
 								})}
@@ -405,7 +405,7 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 			</Panel>
 			{showHelp && <HelpModal onRequestClose={() => setShowHelp(false)} />}
 			{showPluginSettings && <PluginSettingsModal onRequestClose={() => setShowPluginSettings(false)} />}
-		</WPInspectorControls>
+		</InspectorControlsLocation>
 	)
 }
 

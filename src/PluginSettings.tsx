@@ -9,11 +9,14 @@ import {
 export interface PluginSettings {
 	animateInEditor: boolean
 	lazyloadAssets: boolean
+	/** Where to render animation block controls. */
+	location: 'default' | 'advanced' | 'styles'
 }
 
 export const DEFAULT_SETTINGS: PluginSettings = {
 	animateInEditor: true,
 	lazyloadAssets: false,
+	location: 'default',
 }
 
 export const usePluginSettings = (): PluginSettings => {

@@ -9,7 +9,25 @@ import {
 
 import {
 	usePluginSettingsEdit,
+	type PluginSettings,
 } from './PluginSettings'
+
+import ButtonGroup from './button-group'
+
+const LOCATION_OPTIONS = [
+	{
+		label: __('Default', 'animations-for-blocks'),
+		value: 'default',
+	},
+	{
+		label: __('Styles', 'animations-for-blocks'),
+		value: 'styles',
+	},
+	{
+		label: __('Advanced', 'animations-for-blocks'),
+		value: 'advanced',
+	},
+]
 
 /**
  * Modal that displays help info for Animations for Blocks.
@@ -21,6 +39,7 @@ const PluginSettingsModal = ({onRequestClose}) => {
 	const {
 		animateInEditor,
 		lazyloadAssets,
+		location = 'default',
 	} = settings
 
 	return (
@@ -41,6 +60,12 @@ const PluginSettingsModal = ({onRequestClose}) => {
 					help={__('Load assets only when a block with an animation is present on the current page.', 'animations-for-blocks')}
 					checked={lazyloadAssets}
 					onChange={() => setSettings({...settings, lazyloadAssets: !lazyloadAssets})}
+				/>
+				<ButtonGroup.Radio
+					label={__('Inspector controls location', 'animations-for-blocks')}
+					options={LOCATION_OPTIONS}
+					value={location}
+					onChange={nextLocation => setSettings({...settings, location: (nextLocation || 'default') as PluginSettings['location']})}
 				/>
 			</VStack>
 		</Modal>
