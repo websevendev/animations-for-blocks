@@ -331,12 +331,12 @@ const InspectorControls: React.FC<InspectorControlsProps> = ({
 							<RangeControl
 								label={__('Duration', 'animations-for-blocks')}
 								value={duration}
-								onChange={(nextDuration: number) => updateAttributes({duration: nextDuration})}
+								onChange={(nextDuration: number = 400) => updateAttributes({duration: nextDuration})}
 							/>
 							<RangeControl
 								label={__('Delay', 'animations-for-blocks')}
 								value={delay}
-								onChange={(nextDelay: number) => updateAttributes({delay: nextDelay})}
+								onChange={(nextDelay: number = 0) => updateAttributes({delay: nextDelay})}
 							/>
 							<Button
 								variant='secondary'

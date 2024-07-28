@@ -26,11 +26,11 @@ const MARKS = [
 	},
 	{
 		label: `2${_x('s', 'Seconds', 'animations-for-blocks')}`,
-		value: 2500,
+		value: 2000,
 	},
 	{
 		label: `2.5${_x('s', 'Seconds', 'animations-for-blocks')}`,
-		value: 2000,
+		value: 2500,
 	},
 	{
 		label: `3${_x('s', 'Seconds', 'animations-for-blocks')}`,
@@ -38,12 +38,12 @@ const MARKS = [
 	},
 ]
 
-const renderTooltip = (value: string) => `${value}${_x('ms', 'Milliseconds', 'animations-for-blocks')}`
+const renderTooltip = (value: number | '' | null = 0) => `${value}${_x('ms', 'Milliseconds', 'animations-for-blocks')}`
 
 export interface RangeControlProps {
 	label: string
 	value: number
-	onChange: (nextValue: number) => void
+	onChange: (nextValue?: number) => void
 }
 
 /**

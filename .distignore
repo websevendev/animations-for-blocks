@@ -13,3 +13,4 @@ screenshots
 src
 LICENSE
 *.zip
+build/editor.js

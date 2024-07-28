@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "anfb/animation-container",
+	"title": "Animation container",
+	"description": "A container that can be animated. Can be used to animate dynamic or other unsupported blocks.",
+	"keywords": ["group", "wrapper"],
+	"category": "design",
+	"icon": "media-interactive",
+	"textdomain": "animations-for-blocks",
+	"supports": {
+		"anchor": true,
+		"animationsForBlocks": true
+	}
+}

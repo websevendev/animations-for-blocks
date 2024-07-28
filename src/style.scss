@@ -1,39 +1,3 @@
-@use '../node_modules/aos/dist/aos.css';
-@use './style-compat.scss';
-
-/** Block editor canvas. */
-.editor-styles-wrapper {
-
-	/** Animate on Scroll element. */
-	[data-aos] {
-		pointer-events: auto;
-
-		/** Hidden state before animation has begun. */
-		&.aos-init:not(.aos-animate) {
-			opacity: 0 !important;
-			transition: none !important;
-		}
-
-		/** Default duration. */
-		&:not([data-aos-duration]) {
-			transition-duration: 0.4s;
-		}
-
-		/** Default easing. */
-		&:not([data-aos-easing]) {
-			transition-timing-function: ease;
-		}
-	}
-
-	& > .is-root-container {
-
-		/** Hide scrollbars since animation elements can go offscreen. */
-		&:has(.wsd-anfb-is-animating) {
-			overflow: hidden;
-		}
-	}
-}
-
 /** Block editor (non-iframe only). */
 .edit-post-visual-editor {
 

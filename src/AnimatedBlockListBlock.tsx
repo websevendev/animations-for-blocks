@@ -5,14 +5,7 @@ import {
 	useEffect,
 	useRef,
 	useCallback,
-	useContext,
-	createContext,
 } from '@wordpress/element'
-
-import {
-	// @ts-ignore
-	BlockList,
-} from '@wordpress/block-editor'
 
 import cx from 'classnames'
 
@@ -36,8 +29,6 @@ import type {
 export interface AnimatedBlockListBlockProps extends BlockListBlockProps<AnimationsForBlocksBlockAttributes> {
 	BlockListBlock: React.FC<BlockListBlockProps<AnimationsForBlocksBlockAttributes>>
 }
-
-const BlockList__unstableElementContext = BlockList?.__unstableElementContext || createContext(null)
 
 const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
@@ -71,7 +62,6 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 	const [hasAnimated, setHasAnimated] = useState<boolean>(!animateInEditor)
 	const animationDuration = useRef<number>(delay + duration)
 	const timeouts = useRef<ReturnType<typeof setTimeout>[]>([])
-	const elementContext = useContext<Element | DocumentFragment | null>(BlockList__unstableElementContext)
 
 	/** Sync animation duration. */
 	useEffect(() => {
@@ -84,22 +74,8 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 		setIsAnimating(false)
 		setHasAnimated(true)
 
-		/**
-		 * After moving a block up/down in the editor, it gets left with inline styles:
-		 *  	`transform-origin: center center; transform: translate3d(0px, 1px, 0px); z-index: 1;`
-		 * These mess up the animation preview so get rid of them manually.
-		 */
-		if(elementContext) {
-			const block = elementContext.querySelector(`#block-${clientId}`) as HTMLElement
-			if(block) {
-				block.style.removeProperty('transform-origin')
-				block.style.removeProperty('transform')
-				block.style.removeProperty('z-index')
-			}
-		}
-
 		timeouts.current = [setTimeout(() => setHasAnimated(false), 50)]
-	}, [clientId, elementContext])
+	}, [clientId])
 
 	useEffect(() => {
 

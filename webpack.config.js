@@ -8,6 +8,7 @@ module.exports = {
 	entry: {
 		index: './src/index.js',
 		init: './src/init.js',
+		editor: './src/editor.js',
 	},
 	optimization: {
 		...config.optimization,

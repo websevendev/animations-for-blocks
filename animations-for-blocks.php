@@ -3,7 +3,7 @@
  * Plugin Name: Animations for Blocks
  * Plugin URI: https://wordpress.org/plugins/animations-for-blocks
  * Description: Allows to add animations to Gutenberg blocks on scroll.
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: websevendev
  * Author URI: https://github.com/websevendev
  */
@@ -164,6 +164,17 @@ function editor_assets() {
 		'all'
 	);
 
+	/** WP <6.6 compatibility. When this is removed the whole plugin should require at least WP 6.6. */
+	if(!wp_script_is('react-jsx-runtime', 'registered')) {
+		wp_register_script(
+			'react-jsx-runtime',
+			plugins_url('react-jsx-runtime.js', WSD_ANFB_FILE),
+			['react'],
+			'18.3.1',
+			true
+		);
+	}
+
 	wp_enqueue_script(
 		'animations-for-blocks-admin',
 		plugins_url('build/index.js', WSD_ANFB_FILE),
@@ -186,6 +197,28 @@ function editor_assets() {
 	}
 }
 add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\\editor_assets', 5);
+
+
+/**
+ * Enqueue block assets (styles for `.editor-styles-wrapper`).
+ */
+function block_assets() {
+
+	if(!is_admin()) {
+		return;
+	}
+
+	$asset = include WSD_ANFB_DIR . '/build/index.asset.php';
+
+	wp_enqueue_style(
+		'animations-for-blocks-editor',
+		plugins_url('build/editor.css', WSD_ANFB_FILE),
+		[],
+		$asset['version'],
+		'all'
+	);
+}
+add_action('enqueue_block_assets', __NAMESPACE__ . '\\block_assets');
 
 
 /**

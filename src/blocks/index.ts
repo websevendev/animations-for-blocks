@@ -1,12 +1,10 @@
 import {
+	// @ts-ignore
 	registerBlockType,
 } from '@wordpress/blocks'
 
-import {
-	blockName as animationContainerBlockName,
-	settings as animationContainerBlockSettings,
-} from './animation-container'
+import * as animationContainer from './animation-container'
 
 export default () => {
-	registerBlockType(animationContainerBlockName, animationContainerBlockSettings)
+	registerBlockType(animationContainer.metadata, animationContainer.settings)
 }
