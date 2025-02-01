@@ -15,6 +15,8 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor'
 
+import RangeControl from '../../range-control'
+
 import metadata from './block.json'
 export {metadata}
 
@@ -23,7 +25,6 @@ import type {
 	AnimationsForBlocksBlockContext,
 	BlockEditProps,
 } from '../../types'
-import RangeControl from '../../range-control'
 
 export type AnimationContainerBlockAttributes = AnimationsForBlocksBlockAttributes<{
 	/** Should this block animate or provide the animation to child blocks. */
