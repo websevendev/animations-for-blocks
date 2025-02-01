@@ -6,11 +6,33 @@ export type {
 	AnimationsForBlocks,
 }
 
-export type BlockAttributes<T = void> = Record<string, any> & T
+export type {
+	AnimationContainerBlockAttributes,
+} from './blocks/animation-container'
 
-export type AnimationsForBlocksBlockAttributes = BlockAttributes<{animationsForBlocks: AnimationsForBlocks | undefined}>
+export type BlockAttributes<T extends object = {}> = Record<string, any> & T
 
-export interface Block<T = BlockAttributes> {
+export type AnimationsForBlocksBlockAttributes<T extends object = {}> = BlockAttributes<{animationsForBlocks?: AnimationsForBlocks} & T>
+
+export interface AnimationsForBlocksBlockContext {
+	/** Is the provider block enabled to provide its' animation. */
+	animationsForBlocksProvider?: boolean
+	/** The provided animation configuration. */
+	animationsForBlocksAnimation?: AnimationsForBlocks
+	/** Delay subsequent animations incrementally by this amount. */
+	animationStagger?: number
+}
+
+export interface BlockEditProps<T extends object = {}, C extends object = {}> {
+	clientId: string
+	name: string
+	attributes: BlockAttributes & T
+	setAttributes: (nextAttributes: Partial<BlockAttributes & T>) => void
+	context: Record<string, any> & C
+	[key: string]: any
+}
+
+export interface Block<T extends object = BlockAttributes> {
 	clientId: string
 	name: string
 	attributes: BlockAttributes<T>
@@ -23,7 +45,7 @@ export interface Block<T = BlockAttributes> {
 	}[]
 }
 
-export interface BlockListBlockProps<T = BlockAttributes> {
+export interface BlockListBlockProps<T extends object = BlockAttributes> {
 	rootClientId?: string
 	clientId: string
 	name: string

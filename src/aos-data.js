@@ -17,7 +17,32 @@ export const ANIMATIONS = [
 		label: __('Zoom', 'animations-for-blocks'),
 		value: 'zoom',
 	},
+	{
+		label: __('Scale', 'animations-for-blocks'),
+		value: 'scale',
+	},
 ]
+
+export const ANIMATION_INHERIT = [
+	{
+		label: __('Inherit', 'animations-for-blocks'),
+		value: 'inherit',
+	},
+]
+
+export const ANIMATION_DEFAULT = [
+	{
+		label: __('Default', 'animations-for-blocks'),
+		value: 'default',
+	},
+]
+
+export const DYNAMIC_ANIMATIONS = [
+	...ANIMATION_INHERIT,
+	...ANIMATION_DEFAULT,
+]
+
+export const DYNAMIC_ANIMATION_NAMES = DYNAMIC_ANIMATIONS.map(({value}) => value)
 
 export const VARIATIONS = {
 	fade: [
@@ -134,6 +159,32 @@ export const VARIATIONS = {
 		{
 			label: __('Zoom out right', 'animations-for-blocks'),
 			value: 'out-right',
+		},
+	],
+	scale: [
+		{
+			label: __('Scale in', 'animations-for-blocks'),
+			value: 'in',
+		},
+		{
+			label: __('Scale in X', 'animations-for-blocks'),
+			value: 'in-x',
+		},
+		{
+			label: __('Scale in Y', 'animations-for-blocks'),
+			value: 'in-y',
+		},
+		{
+			label: __('Scale out', 'animations-for-blocks'),
+			value: 'out',
+		},
+		{
+			label: __('Scale out X', 'animations-for-blocks'),
+			value: 'out-x',
+		},
+		{
+			label: __('Scale out Y', 'animations-for-blocks'),
+			value: 'out-y',
 		},
 	],
 }

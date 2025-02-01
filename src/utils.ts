@@ -1,3 +1,7 @@
+import {
+	DYNAMIC_ANIMATION_NAMES,
+} from './aos-data'
+
 import type {
 	AnimationsForBlocks
 } from './types'
@@ -29,8 +33,13 @@ export const getAnimationProps = (animationsForBlocks: AnimationsForBlocks = {},
 		return animationProps
 	}
 
+	/** Dynamic animation attributes are added server-side only. */
+	if(context === 'save' && DYNAMIC_ANIMATION_NAMES.includes(animation)) {
+		return animationProps
+	}
+
 	/** Animation. */
-	animationProps['data-aos'] = animation === variation ? animation : animation + '-' + variation
+	animationProps['data-aos'] = animation === variation ? animation : `${animation}-${variation}`
 
 	/** Delay. */
 	if(delay && delay !== 0) {

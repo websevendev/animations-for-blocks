@@ -1,4 +1,5 @@
 import * as React from 'react'
+import cx from 'classnames'
 
 import {
 	useState,
@@ -7,15 +8,14 @@ import {
 	useCallback,
 } from '@wordpress/element'
 
-import cx from 'classnames'
-
-import {
-	usePluginSettings,
-} from './PluginSettings'
-
 import {
 	ANIMATE_EVENT_TYPE,
 } from './InspectorControls'
+
+import {
+	usePluginSettings,
+	useAnimationConfig,
+} from './hooks'
 
 import {
 	getAnimationProps,
@@ -26,7 +26,11 @@ import type {
 	AnimationsForBlocksBlockAttributes,
 } from './types'
 
-export interface AnimatedBlockListBlockProps extends BlockListBlockProps<AnimationsForBlocksBlockAttributes> {
+import type {
+	AnimationContainerBlockAttributes,
+} from './blocks/animation-container'
+
+export interface AnimatedBlockListBlockProps extends BlockListBlockProps<AnimationsForBlocksBlockAttributes & AnimationContainerBlockAttributes> {
 	BlockListBlock: React.FC<BlockListBlockProps<AnimationsForBlocksBlockAttributes>>
 }
 
@@ -45,19 +49,21 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
 	const {
 		animationsForBlocks = {},
+		isAnimationProvider = false,
 	} = attributes
 
+	const animationConfig = useAnimationConfig(clientId, animationsForBlocks, !isAnimationProvider)
+
 	const {
-		animation,
 		delay = 0,
 		duration = 400,
-	} = animationsForBlocks
+	} = animationConfig || {}
 
 	const {
 		animateInEditor,
 	} = usePluginSettings()
 
-	const hasAnimation = !!(animation && animation !== 'none')
+	const hasAnimation = animationConfig !== false
 	const [isAnimating, setIsAnimating] = useState<boolean>(false)
 	const [hasAnimated, setHasAnimated] = useState<boolean>(!animateInEditor)
 	const animationDuration = useRef<number>(delay + duration)
@@ -81,14 +87,14 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
 		const {
 			animation,
-		} = animationsForBlocks
+		} = animationConfig
 
 		const hasAnimation = !!(animation && animation !== 'none')
 
 		if(hasAnimation && animateInEditor) {
 			animateBlock()
 		}
-	}, [animationsForBlocks, animateBlock, animateInEditor])
+	}, [animationConfig, animateBlock, animateInEditor])
 
 	useEffect(() => {
 		if(!hasAnimated) {
@@ -110,6 +116,10 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 
 	useEffect(() => {
 
+		if(!hasAnimation) {
+			return
+		}
+
 		document.addEventListener(`${ANIMATE_EVENT_TYPE}:${clientId}`, animateBlock)
 		document.addEventListener(ANIMATE_EVENT_TYPE, animateBlock)
 
@@ -118,7 +128,7 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 			document.removeEventListener(`${ANIMATE_EVENT_TYPE}:${clientId}`, animateBlock)
 			document.removeEventListener(ANIMATE_EVENT_TYPE, animateBlock)
 		}
-	}, [clientId, animateBlock])
+	}, [hasAnimation, clientId, animateBlock])
 
 	return (
 		<BlockListBlock
@@ -126,15 +136,13 @@ const AnimatedBlockListBlock: React.FC<AnimatedBlockListBlockProps> = props => {
 			wrapperProps={{
 				...wrapperProps,
 				...(hasAnimation && {
-					...getAnimationProps(animationsForBlocks, 'edit'),
+					...getAnimationProps(animationConfig, 'edit'),
 					className: cx(wrapperProps.className, {
-						'aos-init': hasAnimation,
+						'aos-init': true,
 						'aos-animate': isAnimating || hasAnimated,
 						'wsd-anfb-is-animating': isAnimating,
 					}),
-					...(hasAnimation && {
-						'data-anfb-init': true,
-					}),
+					'data-anfb-init': true,
 					...((isAnimating || hasAnimated) && {
 						'data-anfb-animate': true,
 					}),

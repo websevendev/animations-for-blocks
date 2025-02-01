@@ -43,7 +43,7 @@
 
 		& > .components-panel__body {
 			border-top: 0;
-			padding-top: 8px;
+			padding-top: 0;
 
 			& > .components-v-stack {
 
@@ -111,9 +111,18 @@
 
 	&__content {
 		margin-top: 12px;
+		max-width: 320px;
 
 		& > :last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	&__reset-button {
+		align-self: flex-start;
+	}
+
+	.wsd-anfb__animation-control + &__reset-button {
+		margin-top: -24px;
 	}
 }

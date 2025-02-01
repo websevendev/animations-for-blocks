@@ -41,7 +41,9 @@ const MARKS = [
 const renderTooltip = (value: number | '' | null = 0) => `${value}${_x('ms', 'Milliseconds', 'animations-for-blocks')}`
 
 export interface RangeControlProps {
-	label: string
+	label?: string
+	help?: string
+	max?: number
 	value: number
 	onChange: (nextValue?: number) => void
 }
@@ -51,6 +53,8 @@ export interface RangeControlProps {
  */
 const RangeControl: React.FC<RangeControlProps> = ({
 	label,
+	help,
+	max = 3000,
 	value,
 	onChange,
 }) => {
@@ -58,11 +62,12 @@ const RangeControl: React.FC<RangeControlProps> = ({
 		<WPRangeControl
 			className='wsd-anfb__range-control'
 			label={label}
+			help={help}
 			value={value}
 			onChange={onChange}
 			min={0}
 			step={50}
-			max={3000}
+			max={max}
 			withInputField={false}
 			marks={MARKS}
 			renderTooltipContent={renderTooltip}

@@ -1,10 +1,10 @@
 === Animations for Blocks ===
 Contributors: websevendev
 Tags: gutenberg, block, animation, animate, slide
-Requires at least: 6.2
-Tested up to: 6.6
-Requires PHP: 7.4
-Stable tag: 1.1.6
+Requires at least: 6.6
+Tested up to: 6.7.1
+Requires PHP: 8.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,19 @@ When none of the animated elements show up on your site it's possibly due to a J
 3. Animation controls
 
 == Changelog ==
+
+= 1.2 =
+* Front end scripts are now deferred.
+* Lazyload assets option now defaults to true.
+* Added new animation - "Scale", a subtle animation which starts from a slightly scaled up/down state with opacity 0 and transforms into its' initial size while fading in.
+* Added new animation - "Default". Plugin settings now allow to configure an animation that will be used for any block that has selected the "Default" animation.
+* Added new animation - "Inherit". The "Animation container" block now has an option to become an "Animation provider", in which case all the blocks nested inside of it that use the "Inherit" animation will use the animation of the provider block. The provider block can also stagger each subsequent animation by a specified amount.
+* Bundled Lenis - a lightweight smooth scroll library - can be enabled in plugin settings.
+* AOS is now exposed to window object on the front end (`window.AOS`).
+* Tested up to WordPress 6.7.1.
+* Requires WordPress 6.6.
+* Requires PHP 8.1.
+* Update `@wordpress/*` packages.
 
 = 1.1.6 =
 * Tested up to WordPress 6.6.

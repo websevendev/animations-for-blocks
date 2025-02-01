@@ -1,0 +1,30 @@
+[data-aos^=scale] {
+	--aos-scale-in: 1.03;
+	--aos-scale-out: 0.97;
+
+	opacity: 0;
+	transition-property: transform, opacity;
+
+	&.aos-animate {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+[data-aos=scale-in] {
+	transform: scale(var(--aos-scale-in));
+}
+[data-aos=scale-in-x] {
+	transform: scaleX(var(--aos-scale-in));
+}
+[data-aos=scale-in-y] {
+	transform: scaleY(var(--aos-scale-in));
+}
+[data-aos=scale-out] {
+	transform: scale(var(--aos-scale-out));
+}
+[data-aos=scale-out-x] {
+	transform: scaleX(var(--aos-scale-out));
+}
+[data-aos=scale-out-y] {
+	transform: scaleY(var(--aos-scale-out));
+}

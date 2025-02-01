@@ -1,4 +1,5 @@
 @use '../node_modules/aos/dist/aos.css';
+@use './aos-custom.scss';
 @use './style-compat.scss';
 
 /** Block editor canvas. */

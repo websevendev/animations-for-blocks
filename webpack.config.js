@@ -9,6 +9,7 @@ module.exports = {
 		index: './src/index.js',
 		init: './src/init.js',
 		editor: './src/editor.js',
+		lenis: './src/lenis.js',
 	},
 	optimization: {
 		...config.optimization,
@@ -18,7 +19,7 @@ module.exports = {
 			cacheGroups: {
 				...config.optimization.splitChunks.cacheGroups,
 				aos: {
-					test: /[\\/]node_modules[\\/]aos[\\/]/,
+					test: /[\\/]node_modules[\\/]aos[\\/]|aos-custom/,
 					name: 'aos',
 					chunks: 'all',
 				},

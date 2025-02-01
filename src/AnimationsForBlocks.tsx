@@ -70,19 +70,18 @@ const withFeatureAttributes = function(settings) {
 /**
  * Add Inspector Controls to block edit component.
  */
-const withFeatureInspectorControls = createHigherOrderComponent(function(BlockEdit) {
-	return function(props) {
-
+const withFeatureInspectorControls = createHigherOrderComponent(
+	BlockEdit => props => {
 		if(featureIsSupported(props.name)) {
 			return <>
 				<BlockEdit {...props} />
 				<InspectorControls {...props} />
 			</>
 		}
-
 		return <BlockEdit {...props} />
-	}
-}, 'withAnimationsForBlocksInspectorControls')
+	},
+	'withAnimationsForBlocksInspectorControls'
+)
 
 /**
  * Add feature extra props to block save component output.
@@ -93,7 +92,12 @@ const withAnimationProps = (extraProps, blockType, attributes) => {
 
 		const {
 			animationsForBlocks = {},
+			isAnimationProvider = false,
 		} = attributes
+
+		if(isAnimationProvider) {
+			return isAnimationProvider
+		}
 
 		const animationProps = getAnimationProps(animationsForBlocks)
 
